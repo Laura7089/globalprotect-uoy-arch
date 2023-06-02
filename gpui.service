@@ -1,0 +1,12 @@
+[Unit]
+Description=GlobalProtect VPN UI daemon
+
+[Service]
+Type=simple
+ExecStart=/opt/paloaltonetworks/globalprotect/PanGPUI
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=/opt/paloaltonetworks/globalprotect
+
+[Install]
+WantedBy=multi-user.target

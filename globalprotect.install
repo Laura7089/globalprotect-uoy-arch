@@ -1,11 +1,6 @@
 post_install() {
   echo "To use GlobalProtect, run the following commands:"
-  echo "    $ systemctl start --user gpd"
-  echo "    $ /opt/paloaltonetworks/globalprotect/PanGPUI start &"
-  echo "Alternatively, you might be able to do the above with \`gtk-launch PanGPUI\`"
-  echo "    $ systemctl start --user gpa"
-  echo "    $ globalprotect launch-ui"
-  echo "In unsupported desktop environments (e.g. GNOME), to interact with the GlobalProtect UI, (re-)run:"
+  echo "    $ systemctl start --user gpd gpa gpui"
   echo "    $ globalprotect launch-ui"
 }
 
@@ -14,5 +9,5 @@ post_upgrade() {
 }
 
 post_remove() {
-  echo "GlobalProtect has been uninstalled; you may want to ensure that the gpa/gpd systemd services have been stopped!"
+  echo "GlobalProtect has been uninstalled; you may want to ensure that the gpa/gpd/gpui systemd services have been stopped!"
 }
