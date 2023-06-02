@@ -35,6 +35,6 @@ package(){
 	install -Dm644 $GPDIR/gp.desktop "$pkgdir/usr/share/applications/gp.desktop"
 	install -Dm644 $GPDIR/globalprotect.1.gz "$pkgdir/usr/share/man/man1/globalprotect.1.gz"
 	install -Dm755 $GPDIR/globalprotect "$pkgdir/usr/bin/globalprotect"
-	install -Dm644 $GPDIR/gpd.service "$pkgdir/usr/lib/systemd/system/gpd.service"
-	install -Dm644 $GPDIR/gpa.service "$pkgdir/usr/lib/systemd/system/gpa.service"
+	install -Dm644 $GPDIR/gpd.service "$pkgdir/usr/lib/systemd/user/gpd.service"
+	install -Dm644 $GPDIR/gpa.service "$pkgdir/usr/lib/systemd/user/gpa.service"
 }
