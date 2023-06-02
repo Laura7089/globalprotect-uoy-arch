@@ -1,20 +1,27 @@
-# Maintainer: Timothy Gelter <timothy dot gelter plus aur at gmail dot com>
-pkgname=globalprotect-bin
-pkgver=6.0.1.1
+# Maintainer: Laura Demkowicz-Duffy <dev at demkowiczduffy.co.uk>
+pkgname=globalprotect-uoy-bin
+pkgver=6.0.1
 pkgrel=6
 pkgdesc="GlobalProtect VPN client Agent"
 arch=('x86_64')
-url="https://docs.paloaltonetworks.com/globalprotect/5-2/globalprotect-app-user-guide/globalprotect-app-for-linux/download-and-install-the-globalprotect-app-for-linux"
+url="https://support.york.ac.uk/s/article/VPN-GlobalProtect-Linux-instructions"
 license=('custom')
-groups=()
 depends=('qt5-webkit' 'wmctrl')
-options=()
+makedepends=('dpkg')
+provides=('globalprotect')
 install=globalprotect.install
-source=("local://GlobalProtect_tar-$pkgver-$pkgrel.tgz"
-	"local://GlobalProtect_UI_tar-$pkgver-$pkgrel.tgz")
-sha256sums=('e761c7925b222bb6f7260ab143e50b1a741472d866ba0e75641cfb2124a75e01'
-            '1202c7aee105d44772915a00fe8693f4f49c994f32ccd6f08447545c2a0521be')
+source=("local://globalprotect_$pkgver-6uoy0_amd64.deb"
+	"local://globalprotect-ui_$pkgver-6uoy0_amd64.deb")
+sha256sums=('f3f2a92c2eed3a541db55d8dacbda79235d87af88f87647d0a7502759c3b1c4f'
+            '4a2ce927f4727426f95b982bf41bfbf16c6b90d56cdf615a2342a61850ef9ccb')
+
+# Adapted from globalprotect-bin-6.0.1.1-6 on the AUR
 package(){
+	# Flatten package directory structures
+	dpkg-deb -R globalprotect_$pkgver-6uoy0_amd64.deb flat
+	dpkg-deb -R globalprotect-ui_$pkgver-6uoy0_amd64.deb flat-ui
+	find flat flat-ui -type f -not -path "*DEBIAN*" -exec cp -v {} . \;
+
 	# Adapted for Arch Linux from package tarball's install.sh
 	GPDIR="$pkgdir/opt/paloaltonetworks/globalprotect"
 	mkdir -m 755 -p $GPDIR
@@ -22,7 +29,7 @@ package(){
 	cp -f globalprotect PanGPA PanGPS PanGpHip PanGpHipMp $GPDIR/
 	cp -df *.so* $GPDIR/
 	# TODO: Test/fixup gpshow.sh gp_support.sh, as needed
-	cp -f license.cfg gpd gpd.service gpa.service PanMSInit.sh pre_exec_gps.sh gpshow.sh gp_support.sh globalprotect.1.gz \
+	cp -f license.cfg gpd gpd.service gpa.service pre_exec_gps.sh gpshow.sh gp_support.sh globalprotect.1.gz \
 		PanGPUI.desktop PanGPUI globalprotect.png gp.desktop $GPDIR/
 	# TODO: post-install script to run update-desktop-database so the desktop files are known w/out reboot?
 	install -Dm644 $GPDIR/PanGPUI.desktop "$pkgdir/usr/share/applications/PanGPUI.desktop"
@@ -33,5 +40,4 @@ package(){
 	install -Dm755 $GPDIR/globalprotect "$pkgdir/usr/bin/globalprotect"
 	install -Dm644 $GPDIR/gpd.service "$pkgdir/usr/lib/systemd/system/gpd.service"
 	install -Dm644 $GPDIR/gpa.service "$pkgdir/usr/lib/systemd/system/gpa.service"
-	install -Dm644 $GPDIR/PanMSInit.sh "$pkgdir/etc/profile.d/PanMSInit.sh"
 }
