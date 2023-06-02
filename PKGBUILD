@@ -10,10 +10,8 @@ depends=('qt5-webkit' 'wmctrl')
 makedepends=('dpkg')
 provides=('globalprotect')
 install=globalprotect.install
-source=("local://globalprotect-ui_$pkgver-6uoy0_amd64.deb"
-		"gphelper.sh")
-sha256sums=('4a2ce927f4727426f95b982bf41bfbf16c6b90d56cdf615a2342a61850ef9ccb'
-            'c3de21e857d7e7c781734bf1e1b5f5a68c5a66dcf2f92178e48fb79aef3cf731')
+source=("local://globalprotect-ui_$pkgver-6uoy0_amd64.deb")
+sha256sums=('4a2ce927f4727426f95b982bf41bfbf16c6b90d56cdf615a2342a61850ef9ccb')
 
 # Adapted from globalprotect-bin-6.0.1.1-6 on the AUR
 package(){
@@ -39,6 +37,4 @@ package(){
 	install -Dm755 $GPDIR/globalprotect "$pkgdir/usr/bin/globalprotect"
 	install -Dm644 $GPDIR/gpd.service "$pkgdir/usr/lib/systemd/user/gpd.service"
 	install -Dm644 $GPDIR/gpa.service "$pkgdir/usr/lib/systemd/user/gpa.service"
-
-	install -Dm755 gphelper.sh "$pkgdir/usr/bin/gphelper"
 }

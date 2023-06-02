@@ -1,8 +1,9 @@
 post_install() {
   echo "To use GlobalProtect, run the following commands:"
-  echo "    $ sudo systemctl start gpd"
-  echo "    /opt/paloaltonetworks/globalprotect/PanGPUI start &"
-  echo "    $ sudo systemctl start gpa"
+  echo "    $ systemctl start --user gpd"
+  echo "    $ /opt/paloaltonetworks/globalprotect/PanGPUI start &"
+  echo "Alternatively, you might be able to do the above with \`gtk-launch PanGPUI\`"
+  echo "    $ systemctl start --user gpa"
   echo "    $ globalprotect launch-ui"
   echo "In unsupported desktop environments (e.g. GNOME), to interact with the GlobalProtect UI, (re-)run:"
   echo "    $ globalprotect launch-ui"
