@@ -10,9 +10,7 @@ pkgbase = globalprotect-uoy-bin
 	depends = qt5-webkit
 	depends = wmctrl
 	provides = globalprotect
-	source = local://globalprotect_6.0.1-6uoy0_amd64.deb
 	source = local://globalprotect-ui_6.0.1-6uoy0_amd64.deb
-	sha256sums = f3f2a92c2eed3a541db55d8dacbda79235d87af88f87647d0a7502759c3b1c4f
 	sha256sums = 4a2ce927f4727426f95b982bf41bfbf16c6b90d56cdf615a2342a61850ef9ccb
 
 pkgname = globalprotect-uoy-bin

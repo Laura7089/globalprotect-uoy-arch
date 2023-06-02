@@ -10,17 +10,14 @@ depends=('qt5-webkit' 'wmctrl')
 makedepends=('dpkg')
 provides=('globalprotect')
 install=globalprotect.install
-source=("local://globalprotect_$pkgver-6uoy0_amd64.deb"
-	"local://globalprotect-ui_$pkgver-6uoy0_amd64.deb")
-sha256sums=('f3f2a92c2eed3a541db55d8dacbda79235d87af88f87647d0a7502759c3b1c4f'
-            '4a2ce927f4727426f95b982bf41bfbf16c6b90d56cdf615a2342a61850ef9ccb')
+source=("local://globalprotect-ui_$pkgver-6uoy0_amd64.deb")
+sha256sums=('4a2ce927f4727426f95b982bf41bfbf16c6b90d56cdf615a2342a61850ef9ccb')
 
 # Adapted from globalprotect-bin-6.0.1.1-6 on the AUR
 package(){
 	# Flatten package directory structures
-	dpkg-deb -R globalprotect_$pkgver-6uoy0_amd64.deb flat
-	dpkg-deb -R globalprotect-ui_$pkgver-6uoy0_amd64.deb flat-ui
-	find flat flat-ui -type f -not -path "*DEBIAN*" -exec cp -v {} . \;
+	dpkg-deb -R globalprotect-ui_$pkgver-6uoy0_amd64.deb flat
+	find flat -type f -not -path "*DEBIAN*" -exec cp -v {} . \;
 
 	# Adapted for Arch Linux from package tarball's install.sh
 	GPDIR="$pkgdir/opt/paloaltonetworks/globalprotect"
