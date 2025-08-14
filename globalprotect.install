@@ -7,7 +7,3 @@ post_install() {
 post_upgrade() {
   post_install
 }
-
-post_remove() {
-  echo "GlobalProtect has been uninstalled; you may want to ensure that the gpa/gpd/gpui systemd services have been stopped!"
-}
